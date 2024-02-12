@@ -1,0 +1,43 @@
+﻿@model List<Factory>
+
+    <h1>Factory</h1>
+    <div class="card shadow-sm">
+        <div class="card-header text-center">Fabrika Listesi</div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover align-middle">
+                    <thead class="table-grey">
+                        <tr>
+                            <th>Id</th>
+                            <th>Fabrika Adı</th>
+                            <th>Adresi</th>
+                            <th>Kayıt Oluşturulma Tarihi</th>
+                            <th>İşlemler</th>
+                        </tr>
+
+                    </thead>    
+                    <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Adress</td>
+                        <td>@item.CreatedDate</td>
+                        </tr>
+                        
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+        <div class="card-footer ">Toplam Kayıt Sayısı : @Model.Count </div>
+
+
+
+
+
+    </div>
