@@ -1,22 +1,21 @@
-﻿@model List<Auditor>
+﻿@model List<Departmant>
 @{
-    ViewData["Title"] = "Denetimciler";
+    ViewData["Title"] = "Departmanlar";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
 <div class="card shadow-sm">
-    <div class="card-header text-center bg-primary text-black">Denetimci Listesi</div>
+    <div class="card-header text-center bg-primary text-black">Departman Listesi</div>
     <div class="card-body">
         <div class="table-responsive">
             <div class="text-end">
-                <a class="btn btn-success col-2 btn-lg" asp-controller="Auditor" asp-action="Add">Ekle</a>
+                <a class="btn btn-success col-2 btn-lg" asp-controller="Departmant" asp-action="Add">Ekle</a>
             </div>
             <table id="tblFactory" class="table table-bordered table-hover align-middle">
                 <thead class="table-grey">
                     <tr>
                         <th>Id</th>
-                        <th>Denetimci Adı</th>
-                        <th>Denetimci Soyadı</th>
+                        <th>Departman Adı</th>
                         <th>Kayıt Oluşturulma Tarihi</th>
                         <th>İşlemler</th>
                     </tr>
@@ -28,11 +27,10 @@
                         <tr>
                             <td>@item.Id</td>
                             <td>@item.Name</td>
-                            <td>@item.LastName</td>
                             <td>@item.CreatedDate</td>
                             <td>
-                                <a class="btn btn-warning" asp-controller="Auditor" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
-                                <a class="btn btn-danger" asp-controller="Auditor" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
+                                <a class="btn btn-warning" asp-controller="Departmant" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
+                                <a class="btn btn-danger" asp-controller="Departmant" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
                             </td>
                         </tr>
                     }

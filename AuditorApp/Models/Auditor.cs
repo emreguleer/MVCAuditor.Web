@@ -2,5 +2,6 @@
 {
     public class Auditor : BaseModel
     {
+        public string LastName { get; set; }
     }
 }

@@ -1,0 +1,28 @@
+﻿@model Departmant
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="justify-content-center d-flex">
+    <form method="post" class="col-6">
+        <div class="card">
+            <div class="card-header bg-warning text-center bg-gradient">Departman Ekleme Formu</div>
+            <div class="card-body">
+
+
+                <div class="row mb-3">
+                    <label class="form-label">Departman Adı</label>
+                    <input class="form-control" asp-for="Name" placeholder="Lütfen departman adını giriniz." required />
+                </div
+            </div>
+            <div class="card-footer text-center">
+                <button type="submit" class="btn btn-primary">Ekle</button>
+                <button type="reset" class="btn btn-secondary">TEMİZLE</button>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+</div>
