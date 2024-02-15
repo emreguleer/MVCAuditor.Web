@@ -1,6 +1,7 @@
 ﻿using AuditorApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Data.SqlClient;
+using AuditorApp.Models;
 
 namespace AuditorApp.Controllers
 {
@@ -21,11 +22,66 @@ namespace AuditorApp.Controllers
                    Adress = (string)dr["Adress"],
                    CreatedDate = (DateTime)dr["CreatedDate"]
                });
-                dr.Close();
-                conn.Close();
-                
+
             }
+            dr.Close();
+            conn.Close();
             return View(factories);
+        }
+        public IActionResult Delete (int id)
+        {
+            SqlConnection conn = Db.Conn();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Factories WHERE Id=@id", conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            int affectedRows = cmd.ExecuteNonQuery();
+            conn.Close();
+            if (affectedRows > 0)
+            {
+                TempData["success"] = "Silme işlemi başarılı !";
+            }
+            else
+            {
+                TempData["error"] = "Silme işlemi başarısız.";
+            }
+            return RedirectToAction("Index");
+
+
+        }
+      
+
+        public IActionResult Update(int id)
+        {
+            Factory factory = new Factory();
+            SqlConnection conn = Db.Conn();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Factories WHERE Id=@id", conn);
+            cmd.Parameters.AddWithValue("@id", id);
+            conn.Open();
+            SqlDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+
+            factory.Id = (int)dr["Id"];
+            factory.Name = (string)dr["Name"];
+            factory.Adress = (string)dr["Adress"];
+            factory.CreatedDate = (DateTime)dr["CreatedDate"];
+            dr.Close();
+            conn.Close();
+            return View(factory);
+
+        }
+        [HttpPost]
+        public IActionResult Update(Factory factory) 
+        {
+            SqlConnection conn = Db.Conn();
+            SqlCommand cmd = new SqlCommand("UPDATE Factories SET Name=@name, Adress=@adress WHERE Id=@id", conn);
+            cmd.Parameters.AddWithValue("@name", factory.Name);
+            cmd.Parameters.AddWithValue("@id", factory.Id);
+            cmd.Parameters.AddWithValue("@adress", factory.Adress);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            TempData["success"] = "Güncellendi.";
+            return RedirectToAction("Index");
         }
     }
 }

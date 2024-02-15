@@ -1,11 +1,15 @@
 ﻿@model List<Factory>
-    <h1>Fabrika Programı</h1>
-    <h2>Denetçi geldi</h2>
+@{
+    ViewData["Title"] = "Fabrikalar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
     <div class="card shadow-sm">
-        <div class="card-header text-center">Fabrika Listesi</div>
+        <div class="card-header text-center bg-granit text-black">Fabrika Listesi</div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-bordered table-hover align-middle">
+                
+                <table id="tblFactory" class="table table-bordered table-hover align-middle">
                     <thead class="table-grey">
                         <tr>
                             <th>Id</th>
@@ -14,19 +18,22 @@
                             <th>Kayıt Oluşturulma Tarihi</th>
                             <th>İşlemler</th>
                         </tr>
-
+                       
                     </thead>    
                     <tbody>
-                    @foreach (var item in Model)
-                    {
+                       @foreach(var item in Model)
+                       {
                         <tr>
-                        <td>@item.Id</td>
-                        <td>@item.Name</td>
-                        <td>@item.Adress</td>
-                        <td>@item.CreatedDate</td>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Adress</td>
+                            <td>@item.CreatedDate</td>
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Factory" asp-action="Update" asp-route-id="@item.Id" >Düzenle</a>
+                                <a class="btn btn-danger" asp-controller="Factory" asp-action="Delete"  asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
+                            </td>
                         </tr>
-                        
-                    }
+                       }
                     </tbody>
                 </table>
             </div>
@@ -36,8 +43,16 @@
 
         <div class="card-footer ">Toplam Kayıt Sayısı : @Model.Count </div>
 
-
-
-
-
+   
     </div>
+@section Scripts {
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        let table = new DataTable('#tblFactory', {
+            responsive: true
+        });
+    </script>
+    
+
+}
