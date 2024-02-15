@@ -5,10 +5,12 @@
 }
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
     <div class="card shadow-sm">
-        <div class="card-header text-center bg-granit text-black">Fabrika Listesi</div>
+        <div class="card-header text-center bg-primary text-black">Fabrika Listesi</div>
         <div class="card-body">
             <div class="table-responsive">
-                
+                   <div class="text-end">
+                    <a class="btn btn-success col-2 btn-lg" asp-controller ="Factory" asp-action="Add">Ekle</a>
+                   </div>
                 <table id="tblFactory" class="table table-bordered table-hover align-middle">
                     <thead class="table-grey">
                         <tr>
@@ -37,13 +39,9 @@
                     </tbody>
                 </table>
             </div>
-
-
         </div>
 
-        <div class="card-footer ">Toplam Kayıt Sayısı : @Model.Count </div>
 
-   
     </div>
 @section Scripts {
     <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>

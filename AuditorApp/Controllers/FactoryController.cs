@@ -48,8 +48,31 @@ namespace AuditorApp.Controllers
 
 
         }
-      
+        public IActionResult Add()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public IActionResult Add(Factory factory)
+        {
+            SqlConnection conn = Db.Conn();
+            SqlCommand cmd = new SqlCommand("INSERT INTO Factories (Name, Adress) OUTPUT inserted.Id VALUES (@name, @adress)", conn);
+            cmd.Parameters.AddWithValue("@name", factory.Name);
+            cmd.Parameters.AddWithValue("@adress", factory.Adress);
+            conn.Open();
+            int id = (int)cmd.ExecuteScalar();
+            conn.Close();
+            if (id != 0)
+            {
+                TempData["success"] = "Başarılı !";
+            }
+            else
+            {
+                TempData["error"] = "Başarısız !";
+            }
+            return RedirectToAction("Index");
+;        }
         public IActionResult Update(int id)
         {
             Factory factory = new Factory();
