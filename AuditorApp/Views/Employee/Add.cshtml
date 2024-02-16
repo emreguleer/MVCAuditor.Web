@@ -1,0 +1,63 @@
+﻿@model Employee
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    var factories = (List<SelectListItem>)ViewData["factories"];
+    var nameAuditors = (List<SelectListItem>)ViewData["nameAuditors"];
+    var lastNameAuditors = (List<SelectListItem>)ViewData["lastNaameAuditors"];
+    var departmants = (List<SelectListItem>)ViewData["departmants"];
+}
+<div class="justify-content-center d-flex">
+    <form method="post" class="col-6">
+        <div class="card">
+            <div class="card-header bg-warning text-center bg-gradient">Fabrika Ekleme Formu</div>
+            <div class="card-body">
+
+
+                <div class="row mb-3">
+                    <label class="form-label">Denetimci Adı</label>
+                    <select class="form-select" asp-items="nameAuditors" asp-for="AuditorId" required ></select>
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label">Denetimci Soyadı</label>
+                    <select class="form-select" asp-items="lastNameAuditors" asp-for="AuditorId" required></select>
+                </div>
+
+                <div class="row mb-3">
+                    <label class="form-label">Çalışan Adı</label>
+                    <input class="form-control" asp-for="Name" placeholder="Lütfen çalışan adını giriniz." required />
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label">Çalışan Soyadı</label>
+                    <input class="form-control" asp-for="LastName" placeholder="Lütfen çalışan soyadını giriniz." required />
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label">Fabrika Adı</label>
+                    <select class="form-select" asp-items="factories" asp-for="FactoryId" required > </select> 
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label">Departman Adı</label>
+                    <select class="form-select" asp-items="departmants" name="departmants" multiple required> </select>
+                </div>
+                <div class="row mb-3">
+                    <label class="form-label">Çalışan Puani</label>
+                    <input class="form-control" asp-for="Name" placeholder="Lütfen çalışan puanını giriniz." required />
+                </div>
+
+
+
+
+
+            </div>
+            <div class="card-footer text-center">
+
+                <button type="submit" class="btn btn-primary">GÜNCELLE</button>
+                <button type="reset" class="btn btn-secondary">TEMİZLE</button>
+            </div>
+
+        </div>
+    </form>
+
+
+
+
+</div>

@@ -5,11 +5,11 @@
 }
 <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
 <div class="card shadow-sm">
-    <div class="card-header text-center bg-primary text-black">Departman Listesi</div>
+    <div class="card-header text-center bg-primary text-black">Çalışan Performans Listesi</div>
     <div class="card-body">
         <div class="table-responsive">
             <div class="text-end">
-                <a class="btn btn-success col-2 btn-lg" asp-controller="Departmant" asp-action="Add">Ekle</a>
+                <a class="btn btn-success col-2 btn-lg" asp-controller="Employee" asp-action="Add">Ekle</a>
             </div>
             <table id="tblFactory" class="table table-bordered table-hover align-middle">
                 <thead class="table-grey">
@@ -20,6 +20,7 @@
                         <th scope="col">Çalışan Adı</th>
                         <th scope="col">Çalışan Soyadı</th>
                         <th scope="col">Fabrika Adı</th>
+                        <th scope="col">Departmanlar</th>
                         <th scope="col">Çalışan Puanı</th>
                         <th scope="col">İşlemler</th>
                     </tr>
@@ -37,8 +38,8 @@
                             <td>@item.FactoryName</td>
                             <td>@item.Point</td>
                             <td>
-                                <a class="btn btn-warning" asp-controller="Departmant" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
-                                <a class="btn btn-danger" asp-controller="Departmant" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
+                                <a class="btn btn-warning" asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
+                                <a class="btn btn-danger" asp-controller="Employee" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
                             </td>
                         </tr>
                     }
