@@ -1,0 +1,60 @@
+﻿@model List<EmployeeVM>
+@{
+    ViewData["Title"] = "Departmanlar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
+<div class="card shadow-sm">
+    <div class="card-header text-center bg-primary text-black">Departman Listesi</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <div class="text-end">
+                <a class="btn btn-success col-2 btn-lg" asp-controller="Departmant" asp-action="Add">Ekle</a>
+            </div>
+            <table id="tblFactory" class="table table-bordered table-hover align-middle">
+                <thead class="table-grey">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Denetimci Adı</th>
+                        <th scope="col">Denetimci Soyadı</th>
+                        <th scope="col">Çalışan Adı</th>
+                        <th scope="col">Çalışan Soyadı</th>
+                        <th scope="col">Fabrika Adı</th>
+                        <th scope="col">Çalışan Puanı</th>
+                        <th scope="col">İşlemler</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.AuditorName</td>
+                            <td>@item.AuditorLastName</td>
+                            <td>@item.Name</td>
+                            <td>@item.LastName</td>
+                            <td>@item.FactoryName</td>
+                            <td>@item.Point</td>
+                            <td>
+                                <a class="btn btn-warning" asp-controller="Departmant" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
+                                <a class="btn btn-danger" asp-controller="Departmant" asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silme işlemine onay veriyor musunuz ?')"> Sil</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script src="//cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        let table = new DataTable('#tblFactory', {
+            responsive: true
+        });
+    </script>
+
+
+}
