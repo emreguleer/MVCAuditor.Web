@@ -36,6 +36,12 @@
                             <td>@item.Name</td>
                             <td>@item.LastName</td>
                             <td>@item.FactoryName</td>
+                            <td>
+                                @foreach(var departmant in item.Departmants)
+                                {
+                                    <a class="btn btn-sm btn-dark">@departmant.Name</a>
+                                }
+                            </td>
                             <td>@item.Point</td>
                             <td>
                                 <a class="btn btn-warning" asp-controller="Employee" asp-action="Update" asp-route-id="@item.Id">Düzenle</a>
